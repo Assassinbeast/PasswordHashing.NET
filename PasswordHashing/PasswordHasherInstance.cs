@@ -4,6 +4,8 @@
 	{
 		readonly BaseHashAlgorithmItem hashAlgorithmItem;
 		readonly int saltSize;
+		public int HashedPasswordSize => hashAlgorithmItem.Size + saltSize;
+
 		private PasswordHasherInstance(BaseHashAlgorithmItem hashAlgorithmItem, int saltSize)
 		{
 			this.hashAlgorithmItem = hashAlgorithmItem;

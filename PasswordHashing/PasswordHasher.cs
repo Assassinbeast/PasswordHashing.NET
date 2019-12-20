@@ -47,6 +47,7 @@ namespace PasswordHashing
 
 		static int _saltSize;
 		static BaseHashAlgorithmItem _curAlgorithmItem;
+		public static int HashedPasswordSize => _curAlgorithmItem.Size + _saltSize;
 
 		static PasswordHasher()
 		{
@@ -92,7 +93,7 @@ namespace PasswordHashing
 				sb.Append(i + 1 == count ? saltPart.Substring(0, _guidLength - overflow) : saltPart);
 			}
 
-			return sb.ToString();
+			return sb.ToString().ToUpper();
 		}
 
 		/// <summary>
