@@ -82,11 +82,10 @@ var p5 = PasswordHasher.Hash("Abc");
 //We know the length is 144, because Blake2b will always produce bytearray of 64
 //Then we turn the bytearray into a hexidecimal string which becomes 128 in length
 //Our salt size is 16, so the final length is 144
-bool isTrue = p1.Length == 144; //true
-isTrue = p2.Length == 144; //true
-isTrue = p3.Length == 144; //true
-isTrue = p4.Length == 144; //true
-isTrue = p5.Length == 144; //true
-
-Console.WriteLine(PasswordHasher.HashedPasswordSize); //144
+Console.WriteLine(p1.Length == 144); //true
+Console.WriteLine(p2.Length == 144); //true
+Console.WriteLine(p3.Length == 144); //true
+Console.WriteLine(p4.Length == 144); //true
+Console.WriteLine(p5.Length == 144); //true
+Console.WriteLine(PasswordHasher.HashedPasswordSize == 144); //true
 ```
