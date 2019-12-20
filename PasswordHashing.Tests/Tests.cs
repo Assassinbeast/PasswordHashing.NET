@@ -16,7 +16,6 @@ namespace PasswordHashing.Tests
 		public void TestHashedPasswordLengths()
 		{
 			string password = "hello123";
-
 			PasswordHasher.SetDefaultSettings(HashAlgorithm.MD5, 16);
 			string hashedPassword = PasswordHasher.Hash(password);
 			Assert.True(hashedPassword.Length - 16 == 32);

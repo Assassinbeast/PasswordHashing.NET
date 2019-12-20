@@ -99,6 +99,8 @@ namespace PasswordHashing
 		/// <summary>
 		/// Default HashAlgorithm is SHA256 and default SaltSize is 16
 		/// </summary>
+		/// <param name="hashAlgorithm">Choose the hash algorithm to use</param>
+		/// <param name="saltSize">Set a salt size from 1 to 100</param>
 		public static void SetDefaultSettings(HashAlgorithm? hashAlgorithm = null, int? saltSize = null)
 		{
 			if (saltSize < _minSaltSize || saltSize > _maxSaltSize)
