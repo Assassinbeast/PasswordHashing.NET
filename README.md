@@ -10,6 +10,13 @@ PasswordHasher.Validate("hello123", hashedPassword2); //true
 
 bool isSame = hashedPassword == hashedPassword2; //false
 ```
+## Install via NuGet
+https://www.nuget.org/packages/PasswordHashing/
+```
+Install-Package PasswordHashing
+```
+
+## Documentation
 
 * It supports 6 different hashing algorithms:
     * MD5, SHA1, SHA256, SHA384, SHA512 and Blake2b
