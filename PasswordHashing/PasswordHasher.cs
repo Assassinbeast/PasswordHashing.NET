@@ -11,7 +11,8 @@ namespace PasswordHashing
 		const int _minSaltSize = 1;
 		const int _maxSaltSize = 100;
 		internal static readonly UnicodeEncoding Encoder;
-		static readonly int _guidLength;
+		static readonly List<char> _saltChars = new List<char>();
+		static Random _rand = new Random();
 
 		static readonly Dictionary<HashAlgorithm, BaseHashAlgorithmItem> _algorithmItems;
 		internal static BaseHashAlgorithmItem GetHashAlgorithmItem(HashAlgorithm hashAlgorithm)
@@ -51,9 +52,12 @@ namespace PasswordHashing
 
 		static PasswordHasher()
 		{
-			_guidLength = Guid.NewGuid().ToString("N").Length;
 			Encoder = new UnicodeEncoding();
 			_algorithmItems = new Dictionary<HashAlgorithm, BaseHashAlgorithmItem>();
+			for (int i = 48; i <= 57; i++)
+				_saltChars.Add((char)i);
+			for (int i = 65; i <= 90; i++)
+				_saltChars.Add((char)i);
 			SetDefaultSettings(HashAlgorithm.SHA256, 16);
 		}
 		/// <summary>
@@ -84,13 +88,11 @@ namespace PasswordHashing
 
 		internal static string CreateSalt(int saltSize)
 		{
-			var count = (int)Math.Ceiling((float)saltSize / _guidLength);
-			var overflow = (_guidLength * count) - saltSize;
 			StringBuilder sb = new StringBuilder(saltSize);
-			for (int i = 0; i < count; i++)
+			for (int i = 0; i < saltSize; i++)
 			{
-				string saltPart = Guid.NewGuid().ToString("N");
-				sb.Append(i + 1 == count ? saltPart.Substring(0, _guidLength - overflow) : saltPart);
+				var saltChar = _saltChars[_rand.Next(0, _saltChars.Count)];
+				sb.Append(saltChar);
 			}
 
 			return sb.ToString().ToUpper();
