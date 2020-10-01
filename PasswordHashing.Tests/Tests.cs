@@ -8,14 +8,14 @@ namespace PasswordHashing.Tests
 		[Fact]
 		public void SimpleTest()
 		{
-			string password = "hello123";
+			string password = "hello123"; #Plain text Passwords can be harmfull try to encode them
 			string hashedPassword = PasswordHasher.Hash(password);
 			Assert.True(PasswordHasher.Validate(password, hashedPassword));
 		}
 		[Fact]
 		public void TestHashedPasswordLengths()
 		{
-			string password = "hello123";
+			string password = "hello123"; #Plain text Passwords can be harmfull try to encode them
 			PasswordHasher.SetDefaultSettings(HashAlgorithm.MD5, 16);
 			string hashedPassword = PasswordHasher.Hash(password);
 			Assert.True(hashedPassword.Length - 16 == 32);
@@ -56,7 +56,7 @@ namespace PasswordHashing.Tests
 		[Fact]
 		public void ValidateMultipleSamePasswords()
 		{
-			string password = "hello123";
+			string password = "hello123"; #Plain text Passwords can be harmfull try to encode them
 
 			PasswordHasher.SetDefaultSettings(HashAlgorithm.Blake2b, 50);
 			string hashedP1 = PasswordHasher.Hash(password);
@@ -71,7 +71,7 @@ namespace PasswordHashing.Tests
 		[Fact]
 		public void ValidateMultipleWithDifferentSaltSize()
 		{
-			string password = "hello123";
+			string password = "hello123"; #Plain text Passwords can be harmfull try to encode them
 
 			PasswordHasher.SetDefaultSettings(HashAlgorithm.Blake2b, 20);
 			string hashedP1 = PasswordHasher.Hash(password);
@@ -87,7 +87,7 @@ namespace PasswordHashing.Tests
 		[Fact]
 		public void ValidateWithInstanceAgainstStatic()
 		{
-			string password = "hello123";
+			string password = "hello123"; #Plain text Passwords can be harmfull try to encode them
 
 			PasswordHasher.SetDefaultSettings(HashAlgorithm.Blake2b, 20);
 			var passwordHasher = PasswordHasherInstance.Create(HashAlgorithm.Blake2b, 20);
@@ -106,7 +106,7 @@ namespace PasswordHashing.Tests
 		[Fact]
 		public void ValidateWithInstanceAgainstStaticWithDifferentSaltSize()
 		{
-			string password = "hello123";
+			string password = "hello123"; #Plain text Passwords can be harmfull try to encode them
 
 			PasswordHasher.SetDefaultSettings(HashAlgorithm.Blake2b, 20);
 			var passwordHasher = PasswordHasherInstance.Create(HashAlgorithm.Blake2b, 10);
@@ -126,7 +126,7 @@ namespace PasswordHashing.Tests
 		[Fact]
 		public void ValidateWithInstances()
 		{
-			string password = "hello123";
+			string password = "hello123"; #Plain text Passwords can be harmfull try to encode them
 
 			var passwordHasher1 = PasswordHasherInstance.Create(HashAlgorithm.Blake2b, 10);
 			var passwordHasher2 = PasswordHasherInstance.Create(HashAlgorithm.Blake2b, 20);
